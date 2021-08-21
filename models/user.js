@@ -11,10 +11,6 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
-  collectionId: {
-    type: String,
-    required: true
-  }, 
   email: {
     type: String,
     default: '',
