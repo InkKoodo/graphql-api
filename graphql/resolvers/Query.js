@@ -1,10 +1,8 @@
 // const User = require('../../models/User');
 
-// Resolvers define the technique for fetching the types defined in the
-// schema.
-
 const Query = {
-  users: (parent, args, {User}) => User.find()
+  users: (parent, args, {User}) => User.find(),
+  user: (parent, {id}, {User}) => User.findOne({_id: id}),
 };
 
 module.exports = Query;
