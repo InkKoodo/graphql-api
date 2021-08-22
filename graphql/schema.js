@@ -11,6 +11,7 @@ const typeDefs = gql`
     lastName: String!
     email: String
     city: String!
+    postedProducts: [Product]!
   }
 
   type Product {
@@ -25,6 +26,9 @@ const typeDefs = gql`
   type Query {
     users: [User]
     user(id: ID!): User
+
+    products: [Product]
+    product(id: ID!): Product
   }
 
   type Mutation {
@@ -42,6 +46,14 @@ const typeDefs = gql`
       email: String
       city: String
     ) : User
+
+    addProduct(
+      ownerId: ID!
+      image: String!
+      title: String!
+      description: [String!]!
+      price: Float!
+    ): Product
   }
 `;
 
