@@ -10,13 +10,38 @@ const typeDefs = gql`
     firstName: String!
     lastName: String!
     email: String
-    city: String 
+    city: String!
   }
 
-  # The "Query" type is special: it lists all of the available queries that
-  # clients can execute, along with the return type for each.
+  type Product {
+    id: ID!
+    ownerId: ID!
+    image: String!
+    title: String!
+    description: [String!]!
+    price: Float!
+  }
+
   type Query {
     users: [User]
+    user(id: ID!): User
+  }
+
+  type Mutation {
+    createUser(
+      firstName: String!
+      lastName: String!
+      email: String
+      city: String!
+    ): User
+
+    updateUser(
+      id: ID!
+      firstName: String
+      lastName: String
+      email: String
+      city: String
+    ) : User
   }
 `;
 
