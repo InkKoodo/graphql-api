@@ -47,7 +47,7 @@ const typeDefs = gql`
       city: String
     ) : User
 
-    removeUser(id: ID!): Boolean!
+    deleteUser(id: ID!): Boolean!
 
     createProduct(
       ownerId: ID!
@@ -64,6 +64,8 @@ const typeDefs = gql`
       description: [String!]
       price: Float
     ): Product
+
+    deleteProduct(id: ID!): Boolean!
   }
 `;
 

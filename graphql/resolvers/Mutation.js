@@ -24,7 +24,7 @@ const Mutation = {
     } catch (err) {console.log(err)}
   },
 
-  removeUser: async (parent, {id}, {User}) => {
+  deleteUser: async (parent, {id}, {User}) => {
     try {
       await User.findOneAndDelete({_id: id});
       return true;
@@ -49,14 +49,24 @@ const Mutation = {
     } catch (err) {console.log(err)};
   },
 
-  updateProduct: (parent, args, {Product}) => {
+  updateProduct: async (parent, args, {Product}) => {
     try {
       const existFields = filterEmptyArguments(args);
-      const applyUpdate = Product.findOneAndUpdate({_id: args.id}, existFields, {new: true});
+      const applyUpdate = await Product.findOneAndUpdate({_id: args.id}, existFields, {new: true});
 
       return applyUpdate;
     } catch (err) {console.log(err)}
 
+  },
+
+  deleteProduct: async (parent, {id}, {Product}) => {
+    try {
+      await Product.findOneAndDelete({_id: id});
+      return true;
+    } catch (err) {
+      console.log(err)
+      return false;
+    }
   }
 };
 
