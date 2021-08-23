@@ -13,15 +13,15 @@ const Mutation = {
       })
       const result = await newUser.save();
       return result;
-    } catch (err) {
-      return console.log(err)
-    };
+    } catch (err) {console.log(err)};
   },
 
   updateUser: async (parent, args, {User}) => {
-    const existFields = filterEmptyArguments(args);
-    const applyUpdate = await User.findOneAndUpdate({_id: args.id}, existFields, {new: true})
-    return applyUpdate;
+    try {
+      const existFields = filterEmptyArguments(args);
+      const applyUpdate = await User.findOneAndUpdate({_id: args.id}, existFields, {new: true})
+      return applyUpdate;
+    } catch (err) {console.log(err)}
   },
 
   addProduct: async(parent, args, {Product}) => {
