@@ -47,6 +47,16 @@ const Mutation = {
       const result = await newProduct.save();
       return result;
     } catch (err) {console.log(err)};
+  },
+
+  updateProduct: (parent, args, {Product}) => {
+    try {
+      const existFields = filterEmptyArguments(args);
+      const applyUpdate = Product.findOneAndUpdate({_id: args.id}, existFields, {new: true});
+
+      return applyUpdate;
+    } catch (err) {console.log(err)}
+
   }
 };
 

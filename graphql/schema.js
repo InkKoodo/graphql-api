@@ -56,6 +56,14 @@ const typeDefs = gql`
       description: [String!]!
       price: Float!
     ): Product
+
+    updateProduct(
+      id: ID!
+      image: String
+      title: String
+      description: [String!]
+      price: Float
+    ): Product
   }
 `;
 
