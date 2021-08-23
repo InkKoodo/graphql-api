@@ -1,7 +1,6 @@
 const User = {
   postedProducts: async (parent, args, {Product}) => {
-    const {id} = parent;
-    const products = await Product.find({ownerId: id})
+    const products = await Product.find({ownerId: parent.id})
     return products;
   }
 }

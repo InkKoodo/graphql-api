@@ -24,6 +24,16 @@ const Mutation = {
     } catch (err) {console.log(err)}
   },
 
+  deleteUser: async (parent, {id}, {User}) => {
+    try {
+      await User.findOneAndDelete({_id: id});
+      return true;
+    } catch (err) {
+      console.log(err)
+      return false;
+    }
+  },
+
   addProduct: async(parent, args, {Product}) => {
     const {ownerId, image, title, description, price} = args;
     try {
