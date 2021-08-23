@@ -10,7 +10,13 @@ const resolvers = require('./graphql/resolvers/index');
 const server = new ApolloServer({ typeDefs, resolvers, context: {...models} });
 const dbURI = process.env.DB_URI;
 
-mongoose.connect(dbURI, {useNewUrlParser: true, useUnifiedTopology: true})
+const mdbConnectionOptions = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false,
+};
+
+mongoose.connect(dbURI, mdbConnectionOptions)
   .then((result) => {
     server.listen().then(({ url }) => {
       console.log(`🚀  Server ready at ${url}`);
