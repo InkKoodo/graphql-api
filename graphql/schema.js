@@ -47,9 +47,9 @@ const typeDefs = gql`
       city: String
     ) : User
 
-    deleteUser(id: ID!): Boolean!
+    removeUser(id: ID!): Boolean!
 
-    addProduct(
+    createProduct(
       ownerId: ID!
       image: String!
       title: String!
