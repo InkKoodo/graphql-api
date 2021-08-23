@@ -1,3 +1,5 @@
+const { filterEmptyArguments } = require('../../helpers');
+
 const Mutation = {
   createUser: async (parent, args, {User}) => {
     const {firstName, lastName, email, city} = args;
@@ -17,12 +19,9 @@ const Mutation = {
   },
 
   updateUser: async (parent, args, {User}) => {
-    // const {id, firstName, lastName, email, city} = args;
-    // // const updatedFields = {
-    // //   ...args
-    // // }
-    // const user = await User.findOne({_id: id})
-    // console.log(user.tree)
+    const existFields = filterEmptyArguments(args);
+    const applyUpdate = await User.findOneAndUpdate({_id: args.id}, existFields, {new: true})
+    return applyUpdate;
   },
 
   addProduct: async(parent, args, {Product}) => {
